@@ -11,28 +11,35 @@ Full design, metrics, and analysis are in the project report (LaTeX PDF).
 ## Requirements
 
 - C++11 or later
-- `g++` **or** CMake 3.16+
+- **Windows:** `g++` (e.g. MinGW) — used by `run.bat`
+- **Linux / macOS:** `g++` and/or CMake 3.16+
 - Dataset files under `data/` (`train.csv`, `test.csv`)
 
 ---
 
-## Quick start (Windows)
+## Windows — easiest way
 
-From the project root:
+From the project root, double-click **`run.bat`** or in Command Prompt / PowerShell:
 
 ```bat
 run.bat
 ```
 
-This builds `build\MiniSpamFilter.exe` and runs:
+That will:
 
-```text
-build\MiniSpamFilter.exe data\train.csv data\test.csv
+1. Create a `build` folder if needed
+2. Compile with `g++` into `build\MiniSpamFilter.exe`
+3. Run: `build\MiniSpamFilter.exe data\train.csv data\test.csv`
+
+Optional flags after the batch file (passed through to the program):
+
+```bat
+run.bat --evaluate-only
 ```
 
 ---
 
-## Build & run (manual)
+## Linux / macOS
 
 ### Option A — g++
 
@@ -46,8 +53,6 @@ g++ -std=c++11 -I include -o build/MiniSpamFilter \
 ./build/MiniSpamFilter data/train.csv data/test.csv
 ```
 
-On Windows, use `build\MiniSpamFilter.exe` instead of `./build/MiniSpamFilter`.
-
 ### Option B — CMake
 
 ```bash
@@ -59,7 +64,7 @@ cmake --build .
 
 ---
 
-## Usage
+## Usage (all platforms)
 
 ```text
 MiniSpamFilter [train.csv] [test.csv] [--evaluate-only]
@@ -75,13 +80,14 @@ MiniSpamFilter [train.csv] [test.csv] [--evaluate-only]
 **Examples**
 
 ```bash
-# Default paths + interactive predict loop
+# Windows (after build)
+build\MiniSpamFilter.exe
+build\MiniSpamFilter.exe data\train.csv data\test.csv
+build\MiniSpamFilter.exe data\train.csv data\test.csv --evaluate-only
+
+# Linux / macOS
 ./build/MiniSpamFilter
-
-# Explicit paths
 ./build/MiniSpamFilter data/train.csv data/test.csv
-
-# Metrics only
 ./build/MiniSpamFilter data/train.csv data/test.csv --evaluate-only
 ```
 
@@ -96,6 +102,7 @@ include/     headers (Document, tokenisers, NaiveBayes, Evaluator)
 src/         implementations + main.cpp
 data/        Dataset_10191.csv, train.csv, test.csv, split_dataset.py
 build/       build output (generated)
+run.bat      one-click build + run on Windows
 ```
 
 ---
