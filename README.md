@@ -12,26 +12,20 @@ Full design, metrics, and analysis are in the project report (LaTeX PDF).
 
 - C++11 or later
 - **Windows:** `g++` (e.g. MinGW) — used by `run.bat`
-- **Linux / macOS:** `g++` and/or CMake 3.16+
+- **Linux / macOS:** CMake 3.16+
 - Dataset files under `data/` (`train.csv`, `test.csv`)
 
 ---
 
-## Windows — easiest way
+## Windows
 
-From the project root, double-click **`run.bat`** or in Command Prompt / PowerShell:
+From the project root:
 
 ```bat
 run.bat
 ```
 
-That will:
-
-1. Create a `build` folder if needed
-2. Compile with `g++` into `build\MiniSpamFilter.exe`
-3. Run: `build\MiniSpamFilter.exe data\train.csv data\test.csv`
-
-Optional flags after the batch file (passed through to the program):
+Optional:
 
 ```bat
 run.bat --evaluate-only
@@ -41,20 +35,6 @@ run.bat --evaluate-only
 
 ## Linux / macOS
 
-### Option A — g++
-
-```bash
-mkdir -p build
-g++ -std=c++11 -I include -o build/MiniSpamFilter \
-  src/Document.cpp src/Vocabulary.cpp \
-  src/SimpleTokeniser.cpp src/StopWordTokeniser.cpp \
-  src/NaiveBayesClassifier.cpp src/Evaluator.cpp src/main.cpp
-
-./build/MiniSpamFilter data/train.csv data/test.csv
-```
-
-### Option B — CMake
-
 ```bash
 mkdir -p build && cd build
 cmake ..
@@ -62,36 +42,11 @@ cmake --build .
 ./MiniSpamFilter ../data/train.csv ../data/test.csv
 ```
 
----
-
-## Usage (all platforms)
-
-```text
-MiniSpamFilter [train.csv] [test.csv] [--evaluate-only]
-```
-
-| Argument | Default | Meaning |
-|----------|---------|---------|
-| `train.csv` | `data/train.csv` | Training data |
-| `test.csv` | `data/test.csv` | Held-out test data |
-| `--evaluate-only` | off | Print metrics only (skip interactive SMS prompt) |
-| `-h` / `--help` | | Show help |
-
-**Examples**
+Optional (metrics only):
 
 ```bash
-# Windows (after build)
-build\MiniSpamFilter.exe
-build\MiniSpamFilter.exe data\train.csv data\test.csv
-build\MiniSpamFilter.exe data\train.csv data\test.csv --evaluate-only
-
-# Linux / macOS
-./build/MiniSpamFilter
-./build/MiniSpamFilter data/train.csv data/test.csv
-./build/MiniSpamFilter data/train.csv data/test.csv --evaluate-only
+./MiniSpamFilter ../data/train.csv ../data/test.csv --evaluate-only
 ```
-
-After evaluation, type an SMS and press Enter to classify it. Empty line or `quit` exits.
 
 ---
 
