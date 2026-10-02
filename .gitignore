@@ -1,0 +1,25 @@
+# Build artifacts
+build/
+*.exe
+*.o
+*.obj
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Model checkpoints (not used yet)
+models/*
+!models/.gitkeep
