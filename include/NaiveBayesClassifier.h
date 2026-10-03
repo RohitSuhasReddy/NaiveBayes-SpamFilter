@@ -6,10 +6,7 @@
 
 using namespace std;
 
-// Multinomial Naive Bayes for Ham / Spam / Scam SMS classification.
-// Learns word frequencies from labeled Documents, then predicts a class
-// for new messages using Laplace (add-one) smoothing so unseen words
-// do not zero out the probability.
+
 class NaiveBayesClassifier {
 public:
     // Learn counts from labeled training documents (each has label + wordCount).
