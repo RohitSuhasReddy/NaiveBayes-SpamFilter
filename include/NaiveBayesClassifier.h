@@ -1,17 +1,12 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include <map>
+#include <bits/stdc++.h>
 #include "Document.h"
 #include "Vocabulary.h"
 
 using namespace std;
 
-/**
- * Multinomial Naive Bayes for 3 classes: Ham / Spam / Scam.
- * Uses Laplace (add-one) smoothing.
- */
+
 class NaiveBayesClassifier {
 public:
     void train(const vector<Document>& documents);
